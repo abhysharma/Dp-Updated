@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <center>
+      <div class="container">
+        <form
+          action="http://localhost:5000/uploader1"
+          method="POST"
+          enctype="multipart/form-data"
+          id="form1"
+        >
+          <div class="panel-heading">
+            <h2>Data Preparation Automation</h2>
+          </div>
+          <br />
+          <div class="input-group">
+            <span class="input-group-addon"
+              >Path of folder where you want to store the file</span
+            >
+            <input
+              id="Path"
+              type="text"
+              class="form-control"
+              name="text"
+              placeholder="Add Path"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="file" id="lab">File Upload:</label>
+            <input
+              type="file"
+              class="form-control"
+              name="file"
+              accept=".sav"
+              id="customFile"
+              required
+            />
+          </div>
+          <input
+            type="submit"
+            value="Upload"
+            id="sub"
+            class="btn btn-primary btn-lg btn-block"
+          />
+        </form>
+      </div>
+    </center>
+  </body>
+</html>
+
+<style>
+  .container {
+    width: 50%;
+  }
+  #lab {
+    float: left;
+  }
+  .panel-heading {
+    background: #337ab7 !important;
+    color: white !important;
+  }
+</style>

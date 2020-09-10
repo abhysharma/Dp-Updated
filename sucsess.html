@@ -1,0 +1,119 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+	<div class="row text-center">
+        <div class="col-sm-6 col-sm-offset-3">
+        <br><br> <h2 style="color:#0fad00">Syntax Generated</h2>
+        <p style="font-size:20px;color:#5C5C5C;">Thank you for using the Tool!<br<br> You may get your files at: {{path}}
+        </div>
+        
+    </div>
+    <center>
+    {% if tables > 0 %}
+    <div class='Table-caption'>
+        <caption>Please look in the table below for variables that require manual updations. Also available in "Var and Rename_Output" excel file available at: {{path}}</caption>
+    </div>
+    {% endif %}
+    </center>
+    <center>
+    <div class="tab"> 
+        
+    {% if tables > 0 %}
+    <center>
+       
+    <table class='Error-table'>
+        
+        <th class="Error-Heading" id="Error-Heading-one">Question Number</th>
+        <th class="Error-Heading" id="Error-Heading-two">Error Category</th>
+        <th class="Error-Heading" id="Error-Heading-three">Variable Label Created</th>
+        
+    {% for table in range(tables) %}
+            <tr>
+                <td>{{Qnumber[table]}}</td>
+                <td>{{Message[table]}}</td>
+                <td>
+                    {{ Created_Label[table]  }}
+                </td>
+               
+            </tr>
+    {% endfor %}
+    </center>
+    </table>
+    {% endif %}
+    </div>
+
+</center>
+   
+</div>
+
+
+
+<style>
+    .tab
+    {
+        overflow-y:auto;
+        height: 50%;
+        width: 100%;
+    }
+    .Table-caption
+    {
+        width: 40%;
+        font-size: 16px;
+        font-weight: bold;
+        color: #5C5C5C; 
+        padding: 2%;
+    }
+    .Error-table
+    {
+        border: 1px solid lightgray;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        position: relative;
+    }
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+#Error-Heading-one
+{
+    width: 10%;
+}
+
+#Error-Heading-two
+{
+    width: 20%;
+}
+
+#Error-Heading-three
+{
+    width: 70%;
+}
+
+
+.Error-Heading {
+    text-align: center;
+    background-color: #337ab7;
+    position: sticky;
+    top: -1;
+    color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+tr:nth-child(odd) {
+  background-color: white;
+}
+
+body , .container
+{
+    background-color: lightgrey !important;
+}
+</style>

@@ -1,0 +1,172 @@
+<html>
+   <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  
+   <body>
+      <center><form action = "http://localhost:5000/uploader" method = "POST"  enctype = "multipart/form-data" id='form1'>
+        {{colname}}
+        
+        <div class="panel-heading"> <h2>Data Preparation Automation</h2></div>  
+        <div class="form-group">
+          <input id="path" type="text" class="form-control" name="path" value={{file1}}>
+        </div>
+        <div class="form-group">
+          <input id="fnname" type="text" class="form-control" name="fnname" value={{fnname}}>
+        </div>
+          <div class="form-group">
+            <span class="input-group-addon">Enter brands for First loop:</span>
+
+            <input id="Brand" type="text" class="form-control" name="Brand"  placeholder="Format (Brand 1,Brand 2,Brand 3,...)"> 
+          </div>
+          <div class="form-group">
+            <span class="input-group-addon">Enter brands for Second loop(If Any):</span>
+
+            <input id="Brand2" type="text" class="form-control" name="Brand2"  placeholder="Format (Brand 1,Brand 2,Brand 3,...)"> 
+          </div>
+          <!--<div class="form-group">
+            <span class="input-group-addon">Enter Brand Overall Impression Question(if any):</span>
+
+            <input id="BrandQ" type="text" class="form-control" name="BrandQ"  placeholder="Add Question names"> 
+          </div>-->
+        
+            <div class="form-check">
+              <label for="mer">Do you want to merge any questions</label>
+              <input type="checkbox" id="mer" name="mer" value="Merge">
+            
+            <span class="input-group" id="mer1">
+              <span class="input-group-addon">Enter questions you want to merge</span>
+              <input id="merge" type="text" class="form-control" name="merge" placeholder="Format:(Q1-Q1 merge,Q2-Q2 merge)" >
+            </span>
+          </div>
+            <br>
+
+          <div class="form-check" id="Pond-Div">
+              <label for="POND">Select if you need to recode (Other/Prefer not to answer/None /Dont Know) diffrently than the traditional POND structure</label>
+              <input type="checkbox" id="POND" name="POND" value="POND"> 
+            </div>     
+          <div class="HideDiv">    
+          <div class="input-group">
+            <span class="input-group-addon">Prefer Not to Say Value</span>
+            <input id="Prefer" type="number" class="form-control" name="Prefer" placeholder="Add Value for Prefer not to say:">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Other Value</span>
+            <input id="Other" type="number" class="form-control" name="Other" placeholder="Add Value for None:">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">None Value</span>
+            <input id="NoneVal" type="number" class="form-control" name="NoneVal" placeholder="Add Value for None:">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Don't Know Value</span>
+            <input id="Dont" type="number" class="form-control" name="Dont" placeholder="Add Value for Don't Know:">
+          </div>
+        </div>
+      
+          <br>
+         <input type = "submit" value="Next" id="sub" class="btn btn-primary btn-lg btn-block"/>
+        </div>
+      </form> 
+   </center>  
+   </body>
+</html>
+
+<style>
+   #form1
+   {
+      width:50%;
+   }
+   #lab
+   {
+    float: left;
+   }
+   .panel-heading {
+    background: #337ab7 !important;
+    color: white !important;
+  }
+  label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 4px;
+    font-weight: normal;
+    vertical-align: top;
+    margin-left: -61%;
+}
+
+#Pond-Div label
+{
+  margin-left: -6%;
+} 
+}
+</style>
+
+
+<script>
+  $(window).ready(function(){
+    $('#path,#fnname').css('display','none');
+    $('#mer1,.HideDiv').hide();
+
+    $(document).click(function(){
+      if($('#mer').is(':checked')){
+        $('#mer1').show();
+        $('#merge').prop('required',true);
+         
+      }
+      else
+      {
+        $('#mer1').hide();
+        $('#merge').val("");
+        $('#merge').prop('required',false);
+      }
+    });
+      $('#POND').click(function(){
+        if($('#POND').is(':checked')){
+          $('.HideDiv').show();
+        }
+        else
+        {
+          $('.HideDiv').hide();
+        }
+    });
+
+    /*$(document).keyup(function(){
+      if($('$mer').val() !="" &&  $('$mer').val().has(','))
+      {
+        var res = str.split(" ");
+        let val=  $('$mer').val();
+        let first = val.split('')
+      }
+    {{(Merge_check['QS01_1'])|length}}
+
+   });*/
+   
+    let pat = {{colname}}-1
+    pat1 = '^[^,\\n)]*((,[^,\\n]*){'+ pat +'}$)'
+    //$('#Brand').attr("pattern",pat1)
+      $("#sub").click(function(){
+      if($('#Prefer').val()=="")
+      {
+         $('#Prefer').val("96")
+      }
+      if($('#Other').val()=="")
+      {
+         $('#Other').val("97")
+      }
+      if($('#NoneVal').val()=="")
+      {
+         $('#NoneVal').val("98")
+      }
+      if($('#Dont').val()=="")
+      {
+         $('#Dont').val("99")
+      }
+
+   });
+  });
+</script>
